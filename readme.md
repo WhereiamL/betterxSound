@@ -4,6 +4,10 @@ A maintained, drop-in replacement for [Xogy/xsound](https://github.com/Xogy/xsou
 
 betterxSound keeps the original API — same exports, events, and resource name `xsound` — so you replace your existing `xsound` folder and change nothing else.
 
+## Preview
+
+[![betterxSound preview](https://img.youtube.com/vi/ErJoF7W6jCI/maxresdefault.jpg)](https://youtu.be/ErJoF7W6jCI)
+
 ## What is fixed
 
 - **YouTube memory leak.** Sound iframes are torn down correctly, the duration probe no longer spawns a second hidden YouTube player, and an idle DUI recycle reclaims the native/GPU memory CEF would otherwise hold. RAM stays bounded instead of climbing until the browser crashes.
