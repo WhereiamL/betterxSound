@@ -4,6 +4,7 @@ RegisterNUICallback("init", function(data, cb)
         time = config.RefreshTime,
         debug = config.debug,
         youtubeApiKey = config.youtubeApiKey or "",
+        youtubePoolMax = config.youtubePoolMax or 6,
     })
 
     if cb then

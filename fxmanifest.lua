@@ -6,7 +6,7 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 
 --[[ Resource Information ]]--
 name         'xsound'
-version      '1.0.0'
+version      '1.1.0'
 
 client_scripts {
 	"config.lua",
@@ -50,6 +50,7 @@ files {
 	"html/scripts/listener.js",
 	"html/scripts/SoundPlayer.js",
 	"html/scripts/functions.js",
+	"html/scripts/ytpool.js",
 
 	"html/sounds/*.ogg",
 	"html/sounds/*.mp3",

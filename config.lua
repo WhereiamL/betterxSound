@@ -22,6 +22,12 @@ config.youtubeApiKey = ""
 -- never interrupts music. Raise it if your server almost always has music playing.
 config.idleDuiRecycleSec = 20
 
+-- Max simultaneous YouTube player instances. Players are pooled and reused across songs via
+-- loadVideoById, so back-to-back playback (a jukebox) does not keep spawning new players that
+-- CEF cannot free. Total YouTube memory is bounded by this number regardless of how many songs
+-- are played. Raise only if you genuinely need more than this many DIFFERENT YouTube sounds at once.
+config.youtubePoolMax = 6
+
 -- Anti-abuse for client-triggerable sound events (interact-sound emulator + crewphone).
 -- Legit calls pass through unchanged; abusers are rate-limited or rejected.
 config.security = {

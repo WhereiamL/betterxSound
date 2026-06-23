@@ -11,6 +11,7 @@ betterxSound keeps the original API — same exports, events, and resource name 
 ## What is fixed
 
 - **YouTube memory leak.** Sound iframes are torn down correctly, the duration probe no longer spawns a second hidden YouTube player, and an idle DUI recycle reclaims the native/GPU memory CEF would otherwise hold. RAM stays bounded instead of climbing until the browser crashes.
+- **Pooled YouTube players (v1.1).** YouTube players are pooled and reused across songs via `loadVideoById`, capped by `Config.youtubePoolMax`. Back-to-back playback (a jukebox) no longer keeps spawning new player instances CEF cannot free — memory stays flat no matter how many tracks play.
 - **Anti-abuse.** The interact-sound emulator and crewphone trigger events are rate-limited, volume-clamped, and file/URL validated server-side, with an optional ACE gate for server-wide broadcasts. Players can no longer spam sounds at everyone.
 - **Self-contained.** howler (2.2.4), jQuery and DOMPurify are bundled locally — no CDN dependency.
 
