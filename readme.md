@@ -33,6 +33,10 @@ No code changes are needed in resources that already use xSound.
 
 Full documentation: https://docs.whereiaml.com/docs/betterxsound
 
+## Upstream
+
+These fixes are also submitted upstream so everyone benefits, not just users of this fork: [Xogy/xsound#74](https://github.com/Xogy/xsound/pull/74). If it merges, prefer upstream xSound.
+
 ## Credits
 
 Original xSound by Xogy — https://github.com/Xogy/xsound. Licensed under MIT; this fork keeps the original license and adds modifications under the same terms.
