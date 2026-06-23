@@ -33,6 +33,7 @@ function ytMakeFrame(videoId, p) {
             p.ready = true;
             p.yPlayer.addEventListener("onStateChange", function (e) {
                 if (e.data == 0 && p.onEnded) p.onEnded();
+                else if (e.data == 1 && p.onPlaying) p.onPlaying(p.yPlayer);
             });
             if (p.onReady) p.onReady(p.yPlayer);
         } else if (attempts >= 50) {
@@ -43,12 +44,13 @@ function ytMakeFrame(videoId, p) {
 }
 
 const YtPool = {
-    acquire(videoId, onReady, onEnded) {
+    acquire(videoId, onReady, onEnded, onPlaying) {
         for (const p of ytPlayers) {
             if (!p.busy && p.ready) {
                 p.busy = true;
                 p.onReady = onReady;
                 p.onEnded = onEnded;
+                p.onPlaying = onPlaying;
                 try { p.yPlayer.loadVideoById(videoId); } catch (e) {}
                 if (onReady) onReady(p.yPlayer);
                 return p;
@@ -63,13 +65,14 @@ const YtPool = {
                 lru.busy = true;
                 lru.onReady = onReady;
                 lru.onEnded = onEnded;
+                lru.onPlaying = onPlaying;
                 lru.bound = ytIdCounter++;
                 try { lru.yPlayer.loadVideoById(videoId); } catch (e) {}
                 if (onReady) onReady(lru.yPlayer);
                 return lru;
             }
         }
-        const p = { div_id: null, ready: false, busy: true, yPlayer: null, onReady: onReady, onEnded: onEnded, checkReady: null, bound: ytIdCounter };
+        const p = { div_id: null, ready: false, busy: true, yPlayer: null, onReady: onReady, onEnded: onEnded, onPlaying: onPlaying, checkReady: null, bound: ytIdCounter };
         ytPlayers.push(p);
         ytMakeFrame(videoId, p);
         return p;
@@ -80,6 +83,7 @@ const YtPool = {
         p.busy = false;
         p.onReady = null;
         p.onEnded = null;
+        p.onPlaying = null;
         if (p.ready && p.yPlayer) { try { p.yPlayer.stopVideo(); } catch (e) {} }
         let idle = 0;
         for (const q of ytPlayers) if (!q.busy) idle++;

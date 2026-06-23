@@ -174,6 +174,7 @@ class SoundPlayer {
 			this.setYoutubePlayerReady(false);
 			$("#" + this.div_id).remove();
 
+			this._durReported = false;
 			this.poolPlayer = YtPool.acquire(link,
 				(yp) => {
 					this.yPlayer = yp;
@@ -182,6 +183,15 @@ class SoundPlayer {
 				},
 				() => {
 					ended(this.getName());
+				},
+				(yp) => {
+					if (this._durReported) return;
+					let dur = 0;
+					try { dur = yp.getDuration(); } catch (e) {}
+					if (dur && dur > 0) {
+						this._durReported = true;
+						$.post('https://xsound/data_status', JSON.stringify({ type: "maxDuration", time: dur, id: this.getName() }));
+					}
 				}
 			);
 		}

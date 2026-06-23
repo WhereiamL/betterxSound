@@ -6,7 +6,7 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 
 --[[ Resource Information ]]--
 name         'xsound'
-version      '1.1.1'
+version      '1.1.2'
 
 client_scripts {
 	"config.lua",
