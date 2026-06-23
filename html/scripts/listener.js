@@ -22,7 +22,6 @@ $(function () {
             case "init":
                 refreshTime = item.time;
                 debug = item.debug;
-                YOUTUBE_API_KEY = item.youtubeApiKey || "";
                 if (typeof item.youtubePoolMax === "number" && item.youtubePoolMax > 0) YT_POOL_MAX = item.youtubePoolMax;
                 break;
             case "position":

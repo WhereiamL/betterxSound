@@ -6,15 +6,6 @@ config.debug = false
 -- How much ofter the player position is updated ?
 config.RefreshTime = 300
 
--- YouTube Data API v3 key (optional). Leave EMPTY to disable.
--- Reading a video's length used to spawn a SECOND full hidden YouTube player per play just to
--- read its duration. CEF never frees the native/GPU memory of a YouTube embed, so every play
--- permanently grew the FiveM process RAM. With a key, duration is fetched over the lightweight
--- Data API (no video pipeline). With no key, duration is skipped (end-detection still works via
--- the player state, only the timestamp/length HUD value is unknown).
--- Get a free key: https://console.cloud.google.com -> enable "YouTube Data API v3" -> Credentials.
-config.youtubeApiKey = ""
-
 -- Reclaim YouTube memory when idle (seconds, 0 = disable).
 -- CEF does not return a YouTube embed's native/GPU memory until the whole browser (DUI) is
 -- destroyed. When NO sound has been playing for this long, the audio DUI is recycled, dropping
